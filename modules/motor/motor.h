@@ -10,6 +10,7 @@
 //=====[Declarations (prototypes) of public functions]=========================
 void servoInit();
 void servoUpdate();
+void servoSlow();
 
 //=====[#include guards - end]=================================================
 

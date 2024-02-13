@@ -4,7 +4,7 @@
 #include "serial_com.h"
 #include "display.h"
 #include "potentiometers.h"
-#include <string>
+#include "motor.h"
 
 
 //=====[Declaration of private defines]========================================
@@ -18,6 +18,7 @@ UnbufferedSerial uartUsb(USBTX, USBRX, 115200);
 //=====[Declaration and initialization of public global variables]=============
 float wiperRead = 0.0;
 float timeDelayRead = 0.0;
+int placement = 1;
 //=====[Declaration and initialization of private global variables]============
 
 //=====[Declarations (prototypes) of private functions]========================
@@ -35,8 +36,7 @@ void userInterfaceDisplayUpdate(){
 
         //change all of this to reporesent the read values for the potentiometers
         if (wiperRead < WIPER_INT){
-            displayCharPositionWrite ( 12,0 );
-            displayStringWrite("OFF");
+
         } else if (wiperRead > WIPER_INT && wiperRead < WIPER_LOW){
             displayCharPositionWrite ( 12,0 );
             displayStringWrite("INT");
@@ -52,6 +52,7 @@ void userInterfaceDisplayUpdate(){
             }
         } else if (wiperRead > WIPER_LOW && wiperRead < WIPER_HI){
             displayCharPositionWrite ( 17,0 );
+            placement = 2;
             displayStringWrite("LOW");
         } else if (wiperRead > WIPER_HI){
             displayCharPositionWrite ( 17,0 );
@@ -75,6 +76,13 @@ void serialComPrint(){
     int timeStringLength;
     sprintf (timeStr, "Time Delay Potentiometer Value: %.2f\r\n", timeDelayRead);
     uartUsb.write(timeStr, strlen(timeStr));
+}
+
+void displayWrite (int placement){
+    if (placement == 1){
+        displayCharPositionWrite ( 12,0 );
+        displayStringWrite("OFF");
+    }
 }
 
 //=====[Implementations of private functions]==================================

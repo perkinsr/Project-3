@@ -2,7 +2,8 @@
 #include "arm_book_lib.h"
 #include "display.h"
 #include "potentiometers.h"
-#include "serial_com.h"
+//#include "serial_com.h"
+#include "motor.h"
 
 #define DUTY_MIN 0.02
 #define DUTY_MAX 0.20
@@ -13,7 +14,6 @@ DigitalIn ignitionButton(BUTTON1);
 
 DigitalOut engineLED(LED2);
 
-PwmOut servo(PF_9);
 
 
 void inputsInit();
@@ -25,8 +25,9 @@ int main(){
    int driverSeatState = 0;
    int engineState = 0;
    while (true){
-        userInterfaceDisplayUpdate();
-        serialComPrint();
+        //userInterfaceDisplayUpdate();
+        //serialComPrint();
+        servoSlow();
     }
 }
 
