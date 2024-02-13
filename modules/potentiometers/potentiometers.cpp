@@ -8,8 +8,8 @@
 //=====[Declaration of private data types]=====================================
 
 //=====[Declaration and initialization of public global objects]===============
-AnalogIn wiperModeSelection(A1);
-AnalogIn timeDelay(A2);
+AnalogIn wiperModeSelection(A2);
+AnalogIn timeDelay(A3);
 //=====[Declaration of external public global variables]=======================
 
 //=====[Declaration and initialization of public global variables]=============

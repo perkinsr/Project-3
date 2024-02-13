@@ -40,7 +40,7 @@ void userInterfaceDisplayUpdate(){
         } else if (wiperRead > WIPER_INT && wiperRead < WIPER_LOW){
             displayCharPositionWrite ( 12,0 );
             displayStringWrite("INT");
-            if (timeDelayRead < DELAY_MEDIUM){
+            if (timeDelayRead > DELAY_MEDIUM){
                 displayCharPositionWrite (12,1 );
                 displayStringWrite("LONG");
             } else if (timeDelayRead > DELAY_MEDIUM && timeDelayRead < DELAY_SHORT){
