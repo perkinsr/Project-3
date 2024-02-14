@@ -5,9 +5,7 @@
 #include "serial_com.h"
 #include "motor.h"
 
-#define DUTY_MIN 0.02
-#define DUTY_MAX 0.20
-#define PERIOD 0.02
+
 
 DigitalIn driverSeat(D10);
 DigitalIn ignitionButton(BUTTON1);
@@ -27,7 +25,7 @@ int main(){
    while (true){
         userInterfaceDisplayUpdate();
         //serialComPrint();
-        servoSlow();
+        servoUpdate();
     }
 }
 
@@ -35,6 +33,7 @@ void inputsInit(){
     driverSeat.mode(PullDown);
     ignitionButton.mode(PullDown);
     userInterfaceDisplayInit();
+    servoInit();
 }
 
 void outputsInit(){
