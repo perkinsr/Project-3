@@ -87,6 +87,38 @@ static void displayCodeWrite( bool type, uint8_t dataBus );
 
 //=====[Implementations of public functions]===================================
 
+int displayWrite (int placement, int interval){
+    if (placement == 1){
+        displayCharPositionWrite ( 12,0 );
+        displayStringWrite("OFF");
+        displayCharPositionWrite(12,1)
+        displayStringWrtie("N/A");
+    } else if (placement == 2){
+        displayCharPositionWrite ( 12,0 );
+        displayStringWrite("INT");
+        if (interval == 1){
+            displayCharPositionWrite (12,1 );
+            displayStringWrite("LONG");
+        } else if (interval == 2){
+            displayCharPositionWrite (12,1 );
+            displayStringWrite("MEDIUM");
+        } else if (interval == 3){
+            displayCharPositionWrite (12,1 );
+            displayStringWrite("SHORT");
+        }
+    } else if (placement == 3){
+        displayCharPositionWrite ( 17,0 );
+        displayStringWrite("LOW");
+        displayCharPositionWrite(12,1)
+        displayStringWrtie("N/A");
+    } else if (placement == 4){
+        displayCharPositionWrite ( 17,0 );
+        displayStringWrite("HI");
+        displayCharPositionWrite(12,1)
+        displayStringWrtie("N/A");
+    }
+}
+
 void displayInit()
 {
     delay( 50 );

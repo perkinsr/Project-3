@@ -18,71 +18,13 @@ UnbufferedSerial uartUsb(USBTX, USBRX, 115200);
 //=====[Declaration and initialization of public global variables]=============
 float wiperRead = 0.0;
 float timeDelayRead = 0.0;
-int placement = 1;
 //=====[Declaration and initialization of private global variables]============
 
 //=====[Declarations (prototypes) of private functions]========================
 
 //=====[Implementations of public functions]===================================
-void userInterfaceDisplayUpdate(){
-    static int accumulatedDisplayTime = 0;
-    wiperRead = wiperPotRead();
-    timeDelayRead = timePotRead();
 
-    if( accumulatedDisplayTime >=
-        DISPLAY_REFRESH_TIME_MS ) {
 
-        accumulatedDisplayTime = 0;
 
-        //change all of this to reporesent the read values for the potentiometers
-        if (wiperRead < WIPER_INT){
-
-        } else if (wiperRead > WIPER_INT && wiperRead < WIPER_LOW){
-            displayCharPositionWrite ( 12,0 );
-            displayStringWrite("INT");
-            if (timeDelayRead > DELAY_MEDIUM){
-                displayCharPositionWrite (12,1 );
-                displayStringWrite("LONG");
-            } else if (timeDelayRead > DELAY_MEDIUM && timeDelayRead < DELAY_SHORT){
-                displayCharPositionWrite (12,1 );
-                displayStringWrite("MEDIUM");
-            } else if (timeDelayRead > DELAY_SHORT){
-                displayCharPositionWrite (12,1 );
-                displayStringWrite("SHORT");
-            }
-        } else if (wiperRead > WIPER_LOW && wiperRead < WIPER_HI){
-            displayCharPositionWrite ( 17,0 );
-            placement = 2;
-            displayStringWrite("LOW");
-        } else if (wiperRead > WIPER_HI){
-            displayCharPositionWrite ( 17,0 );
-            displayStringWrite("HI");
-        }
-    } else {
-        accumulatedDisplayTime =
-            accumulatedDisplayTime + SYSTEM_TIME_INCREMENT_MS;        
-    } 
-}
-
-void serialComPrint(){
-    wiperRead = wiperPotRead();
-    char wiperStr[100];
-    int wiperStringLength;
-    sprintf (wiperStr, "Wiper Potentiometer Value: %.2f\r\n", wiperRead);
-    uartUsb.write(wiperStr, strlen(wiperStr));
-
-    timeDelayRead = timePotRead();
-    char timeStr[100];
-    int timeStringLength;
-    sprintf (timeStr, "Time Delay Potentiometer Value: %.2f\r\n", timeDelayRead);
-    uartUsb.write(timeStr, strlen(timeStr));
-}
-
-void displayWrite (int placement){
-    if (placement == 1){
-        displayCharPositionWrite ( 12,0 );
-        displayStringWrite("OFF");
-    }
-}
 
 //=====[Implementations of private functions]==================================
