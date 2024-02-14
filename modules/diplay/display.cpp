@@ -91,8 +91,8 @@ int displayWrite (int placement, int interval){
     if (placement == 1){
         displayCharPositionWrite ( 12,0 );
         displayStringWrite("OFF");
-        displayCharPositionWrite(12,1)
-        displayStringWrtie("N/A");
+        displayCharPositionWrite(12,1);
+        displayStringWrite("N/A");
     } else if (placement == 2){
         displayCharPositionWrite ( 12,0 );
         displayStringWrite("INT");
@@ -109,13 +109,13 @@ int displayWrite (int placement, int interval){
     } else if (placement == 3){
         displayCharPositionWrite ( 17,0 );
         displayStringWrite("LOW");
-        displayCharPositionWrite(12,1)
-        displayStringWrtie("N/A");
+        displayCharPositionWrite(12,1);
+        displayStringWrite("N/A");
     } else if (placement == 4){
         displayCharPositionWrite ( 17,0 );
         displayStringWrite("HI");
-        displayCharPositionWrite(12,1)
-        displayStringWrtie("N/A");
+        displayCharPositionWrite(12,1);
+        displayStringWrite("N/A");
     }
 }
 

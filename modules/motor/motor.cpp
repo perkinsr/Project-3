@@ -30,7 +30,7 @@ void servoUpdate() {
     delay(2000);
 }
 
-}
+
 
 void servoSlow(){
     float position = DUTY_MIN;
@@ -50,13 +50,12 @@ float servoDegreesToPosition(float degrees) {
     }
 }
 
-void servoWipersUpdate(int mode) {
+void servoWipersUpdate(float wiperState) {
     static int accumulatedTime;
-    if (accumulatedTime>=SET_TIME_INTERVAL)
-        if (mode == OFF) {
-        }
-        if (mode == HIGH) {
-        }
-        if (mode == LOW) {
-        }
+    if (accumulatedTime>=SET_TIME_INTERVAL){}
+
+}
+
+void servoWipersTest() {
+
 }
