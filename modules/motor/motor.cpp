@@ -4,6 +4,7 @@
 #include "motor.h"
 // Defines
 #define SET_TIME_INTERVAL 40
+#define INCREMENT 0.01
 
 // Objects
 PwmOut servo(PF_9);

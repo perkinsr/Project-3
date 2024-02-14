@@ -16,7 +16,9 @@ void displayCharPositionWrite( uint8_t charPositionX, uint8_t charPositionY );
 
 void displayStringWrite( const char * str );
 
-int displayWrite(int placement, int interval);
+void displayWrite(int placement, int interval);
+
+void userInterfaceDisplayInit();
 
 //=====[#include guards - end]=================================================
 

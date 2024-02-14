@@ -2,7 +2,6 @@
 #include "arm_book_lib.h"
 #include "display.h"
 #include "potentiometers.h"
-#include "serial_com.h"
 #include "motor.h"
 
 
@@ -20,13 +19,17 @@ void outputsInit();
 int main(){
    inputsInit();
    outputsInit();
-   int driverSeatState = 0;
    int engineState = 0;
    while (true){
-        userInterfaceDisplayUpdate();
-        //serialComPrint();
+       if (ignitionButton && driverSeat){
+           engineLED = ON;
+           engineState = 1;
+       }
+   }
+   while (engineState == 1){
+        potentiometerCheck();
         servoUpdate();
-        delay(SYSTEM_TIME_INCREMENT_MS)
+        delay(SYSTEM_TIME_INCREMENT_MS);
     }
 }
 

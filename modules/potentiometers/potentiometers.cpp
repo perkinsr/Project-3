@@ -21,36 +21,25 @@ float timeDelayRead = 0.0;
 //=====[Declarations (prototypes) of private functions]========================
 
 //=====[Implementations of public functions]===================================
-void userInterfaceDisplayUpdate(){
-    static int accumulatedDisplayTime = 0;
+void potentiometerCheck(){
     wiperRead = wiperPotRead();
-    timeDelayRead = timePotRead();
-
-    if( accumulatedDisplayTime >=
-        DISPLAY_REFRESH_TIME_MS ) {
-
-        accumulatedDisplayTime = 0;
-        
-        //change all of this to reporesent the read values for the potentiometers
-        if (wiperRead < WIPER_INT){
-            displayWrite(1,0);
-        } else if (wiperRead > WIPER_INT && wiperRead < WIPER_LOW){
-            if (timeDelayRead > DELAY_MEDIUM){
-                displayWrite(2,1);
-            } else if (timeDelayRead > DELAY_MEDIUM && timeDelayRead < DELAY_SHORT){
-                displayWrite(2,2);
-            } else if (timeDelayRead > DELAY_SHORT){
-                displayWrite(2,3);
-            }
-        } else if (wiperRead > WIPER_LOW && wiperRead < WIPER_HI){
-            displayWrite(3,0);
-        } else if (wiperRead > WIPER_HI){
-            displayWrite(4,0);
+    timeDelayRead = timePotRead(); 
+    //change all of this to reporesent the read values for the potentiometers
+    if (wiperRead < WIPER_INT){
+        displayWrite(1,0);
+    } else if (wiperRead > WIPER_INT && wiperRead < WIPER_LOW){
+        if (timeDelayRead > DELAY_MEDIUM){
+            displayWrite(2,1);
+        } else if (timeDelayRead > DELAY_MEDIUM && timeDelayRead < DELAY_SHORT){
+            displayWrite(2,2);
+        } else if (timeDelayRead > DELAY_SHORT){
+            displayWrite(2,3);
         }
-    } else {
-        accumulatedDisplayTime =
-            accumulatedDisplayTime + SYSTEM_TIME_INCREMENT_MS;        
-    } 
+    } else if (wiperRead > WIPER_LOW && wiperRead < WIPER_HI){
+        displayWrite(3,0);
+    } else if (wiperRead > WIPER_HI){
+        displayWrite(4,0);
+    }
 }
 
 float wiperPotRead(){

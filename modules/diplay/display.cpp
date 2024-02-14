@@ -87,7 +87,7 @@ static void displayCodeWrite( bool type, uint8_t dataBus );
 
 //=====[Implementations of public functions]===================================
 
-int displayWrite (int placement, int interval){
+void displayWrite (int placement, int interval){
     if (placement == 1){
         displayCharPositionWrite ( 12,0 );
         displayStringWrite("OFF");
