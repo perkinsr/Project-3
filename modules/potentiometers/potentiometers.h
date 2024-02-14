@@ -16,6 +16,7 @@
 //=====[Declarations (prototypes) of public functions]=========================
 float wiperPotRead();
 float timePotRead();
+void potentiometerCheck();
 //=====[#include guards - end]=================================================
 
 #endif // _MODULE_TEMPLATE_H_
