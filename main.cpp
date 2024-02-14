@@ -2,7 +2,7 @@
 #include "arm_book_lib.h"
 #include "display.h"
 #include "potentiometers.h"
-//#include "serial_com.h"
+#include "serial_com.h"
 #include "motor.h"
 
 #define DUTY_MIN 0.02
@@ -25,7 +25,7 @@ int main(){
    int driverSeatState = 0;
    int engineState = 0;
    while (true){
-        //userInterfaceDisplayUpdate();
+        userInterfaceDisplayUpdate();
         //serialComPrint();
         servoSlow();
     }
@@ -39,5 +39,4 @@ void inputsInit(){
 
 void outputsInit(){
     engineLED = OFF;
-    servo.period(PERIOD);
 }

@@ -30,11 +30,10 @@ void servoUpdate( int placement) {
 }
 
 void servoSlow(){
-    servoInit();
     float position = DUTY_MIN;
     for (int i = 0; i < 100; i++){
         position = position + INCREMENT;
         servo.write(position);
-        delay(20);
+        delay(50);
     }
 }
