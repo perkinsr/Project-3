@@ -37,3 +37,12 @@ void servoSlow(){
         delay(50);
     }
 }
+
+float servoDegreesToPosition(float degrees) {
+    if (degrees<180 && degrees >0) {
+        return degrees*(DUTY_MAX-DUTY_MIN)/180;
+    }
+    else {
+        return DUTY_MIN;
+    }
+}
