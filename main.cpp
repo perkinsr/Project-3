@@ -26,6 +26,7 @@ int main(){
         userInterfaceDisplayUpdate();
         //serialComPrint();
         servoUpdate();
+        delay(SYSTEM_TIME_INCREMENT_MS)
     }
 }
 
