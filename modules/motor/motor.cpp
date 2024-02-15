@@ -23,6 +23,10 @@ void servoInit() {
     delay(1000);
 }
 
+void wiperUpdate(int wiperState) {
+
+}
+
 // Set the movement of the servo
 void servoUpdate() {
     servo.write(DUTY_MAX);

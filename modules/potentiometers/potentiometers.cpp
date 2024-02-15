@@ -76,6 +76,6 @@ float wiperPotRead(){
 }
 
 float intermediatePotRead(){
-    return timeDelay.read();
+     return timeDelay.read();
 }
 //=====[Implementations of private functions]==================================
