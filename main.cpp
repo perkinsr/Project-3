@@ -5,7 +5,6 @@
 #include "motor.h"
 
 
-
 DigitalIn driverSeat(D10);
 DigitalIn ignitionButton(BUTTON1);
 
@@ -27,7 +26,7 @@ int main(){
        }
    }
    while (engineState == 1){
-        potentiometerCheck();
+        displayWrite(readWiperState(wiperPotRead()), readIntermediateState(intermediatePotRead()));
         servoUpdate();
         delay(SYSTEM_TIME_INCREMENT_MS);
     }
