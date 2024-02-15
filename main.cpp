@@ -3,12 +3,8 @@
 #include "display.h"
 #include "potentiometers.h"
 #include "motor.h"
+#include "car.h"
 
-
-DigitalIn driverSeat(D10);
-DigitalIn ignitionButton(BUTTON1);
-
-DigitalOut engineLED(LED2);
 
 
 
@@ -18,14 +14,8 @@ void outputsInit();
 int main(){
    inputsInit();
    outputsInit();
-   int engineState = 0;
    while (true){
-       if (ignitionButton && driverSeat){
-           engineLED = ON;
-           engineState = 1;
-       }
-   }
-   while (engineState == 1){
+       engineUpdate();
         displayWrite(readWiperState(wiperPotRead()), readIntermediateState(intermediatePotRead()));
         servoUpdate();
         delay(SYSTEM_TIME_INCREMENT_MS);
@@ -33,12 +23,7 @@ int main(){
 }
 
 void inputsInit(){
-    driverSeat.mode(PullDown);
-    ignitionButton.mode(PullDown);
     userInterfaceDisplayInit();
     servoInit();
-}
-
-void outputsInit(){
-    engineLED = OFF;
+    carInit();
 }
