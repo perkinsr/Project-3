@@ -5,6 +5,10 @@
 // Defines
 #define SET_TIME_INTERVAL 40
 #define INCREMENT 0.01
+#define TARGET_POSITION 0.03312778
+
+#define FORWARD true
+#define BACKWARD false
 
 // Objects
 PwmOut servo(PF_9);
@@ -33,14 +37,7 @@ void servoUpdate() {
 
 
 
-void servoSlow(){
-    float position = DUTY_MIN;
-    for (int i = 0; i < 100; i++){
-        position = position + INCREMENT;
-        servo.write(position);
-        delay(50);
-    }
-}
+
 
 float servoDegreesToPosition(float degrees) {
     if (degrees<180 && degrees >0) {
@@ -59,4 +56,19 @@ void servoWipersUpdate(float wiperState) {
 
 void servoWipersTest() {
 
+}
+
+void servoSpeed(int wiperState){
+    static int accumulatedTime = 0;
+    static float position = DUTY_MIN;
+    if (accumulatedTime >= 40){
+        accumulatedTime = 0;
+        position = position + wiperState;
+        servo.write(position);
+        delay(50);
+    } else if (){
+
+    }
+
+    accumulatedTime = accumulatedTime + SYSTEM_TIME_INCREMENT_MS;
 }
