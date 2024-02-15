@@ -28,27 +28,6 @@ ignitionButtonState_t ignitionButtonState;
 
 //=====[Declarations (prototypes) of public functions]=========================
 
-
-//=====[Main function, the program entry point after power on or reset]========
-
-/*
-int main() {
-  inputsInit();
-  outputsInit();
-  while (true) {
-      engineUpdate();
-      if (engineLed) {
-      headlightUpdate();
-      }
-      else if (leftHeadlight) {
-          leftHeadlight = OFF;
-          rightHeadlight = OFF;
-      }
-      delay(TIME_INCREMENT_MS);
-  }
-}
-*/
-
 //=====[Implementations of public functions]===================================
 
 void carInit()
