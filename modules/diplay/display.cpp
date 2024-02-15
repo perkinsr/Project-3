@@ -87,31 +87,31 @@ static void displayCodeWrite( bool type, uint8_t dataBus );
 
 //=====[Implementations of public functions]===================================
 
-void displayWrite (int placement, int interval){
-    if (placement == 1){
+void displayWrite (int placement, int interval) {
+    if (placement == WIPER_STATE_OFF){
         displayCharPositionWrite ( 12,0 );
         displayStringWrite("OFF");
         displayCharPositionWrite(12,1);
         displayStringWrite("N/A");
-    } else if (placement == 2){
+    } else if (placement == WIPER_STATE_INTER){
         displayCharPositionWrite ( 12,0 );
         displayStringWrite("INT");
-        if (interval == 1){
+        if (interval == INTER_STATE_LONG){
             displayCharPositionWrite (12,1 );
             displayStringWrite("LONG");
-        } else if (interval == 2){
+        } else if (interval == INTER_STATE_MEDIUM){
             displayCharPositionWrite (12,1 );
             displayStringWrite("MEDIUM");
-        } else if (interval == 3){
+        } else if (interval == INTER_STATE_SHORT){
             displayCharPositionWrite (12,1 );
             displayStringWrite("SHORT");
         }
-    } else if (placement == 3){
+    } else if (placement == WIPER_STATE_LOW){
         displayCharPositionWrite ( 17,0 );
         displayStringWrite("LOW");
         displayCharPositionWrite(12,1);
         displayStringWrite("N/A");
-    } else if (placement == 4){
+    } else if (placement == WIPER_STATE_HI){
         displayCharPositionWrite ( 17,0 );
         displayStringWrite("HI");
         displayCharPositionWrite(12,1);
@@ -232,8 +232,9 @@ static void displayCodeWrite( bool type, uint8_t dataBus )
 {
     if ( type == DISPLAY_RS_INSTRUCTION )
         displayPinWrite( DISPLAY_PIN_RS, DISPLAY_RS_INSTRUCTION);
-        else
+    else{ // if i broke something here go look at original code for this 
         displayPinWrite( DISPLAY_PIN_RS, DISPLAY_RS_DATA);
+    }
     displayPinWrite( DISPLAY_PIN_RW, DISPLAY_RW_WRITE );
     displayDataBusWrite( dataBus );
 }
