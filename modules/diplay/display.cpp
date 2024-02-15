@@ -232,9 +232,8 @@ static void displayCodeWrite( bool type, uint8_t dataBus )
 {
     if ( type == DISPLAY_RS_INSTRUCTION )
         displayPinWrite( DISPLAY_PIN_RS, DISPLAY_RS_INSTRUCTION);
-    else{ // if i broke something here go look at original code for this 
+        else // if i broke something here go look at original code for this 
         displayPinWrite( DISPLAY_PIN_RS, DISPLAY_RS_DATA);
-    }
     displayPinWrite( DISPLAY_PIN_RW, DISPLAY_RW_WRITE );
     displayDataBusWrite( dataBus );
 }

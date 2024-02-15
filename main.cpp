@@ -14,7 +14,11 @@ int main(){
    modulesInit();
    while (true){
        engineUpdate();
-        displayWrite(readWiperState(wiperPotRead()), readIntermediateState(intermediatePotRead()));
+       float wiperPotReading = wiperPotRead();
+       float intermediatePotReading = intermediatePotRead();
+       int wiperState = readWiperState(wiperPotReading);
+       int intermediateState = readIntermediateState(intermediatePotReading);
+        displayWrite(wiperState, intermediateState);
         servoUpdate();
         delay(SYSTEM_TIME_INCREMENT_MS);
     }
