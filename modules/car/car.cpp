@@ -17,7 +17,7 @@ typedef enum { //Object that implements our state table for the ignition button
 //=====[Declaration and initialization of public global objects]===============
 
 DigitalIn ignitionButton(BUTTON1);
-DigitalIn driverSeatButton(D2);
+DigitalIn driverSeatButton(D13);
 
 DigitalOut engineLed(LED2);
 
