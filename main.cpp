@@ -5,15 +5,13 @@
 #include "motor.h"
 #include "car.h"
 
+#define SYSTEM_TIME_INCREMENT_MS   10
 
 
-
-void inputsInit();
-void outputsInit();
+void modulesInit();
 
 int main(){
-   inputsInit();
-   outputsInit();
+   modulesInit();
    while (true){
        engineUpdate();
         displayWrite(readWiperState(wiperPotRead()), readIntermediateState(intermediatePotRead()));
@@ -22,7 +20,7 @@ int main(){
     }
 }
 
-void inputsInit(){
+void modulesInit(){
     userInterfaceDisplayInit();
     servoInit();
     carInit();

@@ -5,7 +5,7 @@
 
 //=====[Declaration of public defines]=========================================
 #define DISPLAY_REFRESH_TIME_MS 1000
-#define SYSTEM_TIME_INCREMENT_MS   10
+
 //=====[Declaration of public data types]======================================
 
 //=====[Declarations (prototypes) of public functions]=========================
