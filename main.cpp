@@ -5,14 +5,16 @@
 #include "motor.h"
 #include "car.h"
 
-#define SYSTEM_TIME_INCREMENT_MS   10
-
 
 void modulesInit();
 
 int main(){
    modulesInit();
    while (true){
+       if (TIME_RUNNING >= TIME_DELAY){
+
+       }
+       
        engineUpdate();
        float wiperPotReading = wiperPotRead();
        float intermediatePotReading = intermediatePotRead();
