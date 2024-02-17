@@ -62,7 +62,7 @@ void servoSpeedAndDelay(int wiperState, int intermediateState){
 //=====[Implementations of private functions]==================================
 
 //takes the specific speed and time delay in through the parameters and increments the motor by the given
-//ammount in interval every 2 periods (40 milliseconds)
+//ammount in interval every 2 periods (40 milliseconds). This is only used for the interval setting
 void servoUpdate(float interval, int intermediateTimeDelay){
 
     //accounts for the motor accumulated timne
@@ -76,43 +76,67 @@ void servoUpdate(float interval, int intermediateTimeDelay){
     static bool direction = FORWARD;
     static bool cycleComplete = false;
 
+    //if it has been 40 milliseconds, run the following while loop
     if (accumulatedTime >= 4){
-
+        
+        //this while loop ensures that the speed or time delay can't be changed in the middle of a cycle
         while (cycleComplete == false){
+
+            //if the position is equal to or greater than 67 degrees from the duty min, change the direction
+            //to backwards
             if (position >= TARGET_POSITION){
                 direction = BACKWARD;
             } 
+
+            //move backwards until duty min is reached
             if (direction == BACKWARD && position >= DUTY_MIN){
                 position = position - interval;
                 servo.write(position);
+                //makes sure the servo is only moving once every two periods during this while loop
                 delay(40);
             } 
+
+            //if the position is less than duty min, move forward again and set cycleComplete to true
+            //indicating that a cycle has been completed and the time delay and speed can be changed
             if (position < DUTY_MIN){
                 direction = FORWARD;
                 cycleComplete = true;
             }
+
+            //move forward until 67 degrees is reaches
             if (direction == FORWARD && position <= TARGET_POSITION){
                 position = position + interval;
                 servo.write(position);
+                //makes sure the servo is only moving once every two periods during this while loop
                 delay(40);
             }
+            //check to see if the ignitionButton is pressed during this process
             engineCheck();
         } 
 
+        //once a revolution is compete, increment accumulatedTimeDelay ever 40 milliseconds until it has
+        //reached the specified time delay
         if (cycleComplete == true && accumulatedTimeDelay != intermediateTimeDelay){
             accumulatedTimeDelay++;
+
+        //once the specified time delay is reached, a new cycle can start and set the accumulatedTimeDelay
+        // to zero
         } else if (accumulatedTimeDelay == intermediateTimeDelay){
             cycleComplete = false;
             accumulatedTimeDelay = 0;
         }
         
         accumulatedTime = 0;
+    
+    //if it hasn't been 40 milliseconds, increment accumulatedTime by the given system time delay
     } else {
         accumulatedTime = accumulatedTime + SYSTEM_TIME_INCREMENT_MS;
     } 
 
 }
 
+//does the same motor process as in servoUpdate except there is no time delay accounted for. This is only 
+//used for LOW and HI speeds
 void noTimerServo (float interval){
     static int accumulatedTime = 0;
     static int accumulatedTimeDelay = 0;
