@@ -25,11 +25,12 @@
 //=====[Declaration of public data types]======================================
 
 //=====[Declarations (prototypes) of public functions]=========================
+
+int readWiperState(float wiperState);
+int readIntermediateState(float intermediateState);
+
 float wiperPotRead();
 float intermediatePotRead();
-//void potentiometerCheck();
-int readWiperState(float wiperRead);
-int readIntermediateState(float intermediateMode);
 //=====[#include guards - end]=================================================
 
 #endif // _MODULE_TEMPLATE_H_

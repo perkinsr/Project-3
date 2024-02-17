@@ -10,18 +10,12 @@ void modulesInit();
 
 int main(){
    modulesInit();
-   while (true){
-       if (TIME_RUNNING >= TIME_DELAY){
-
-       }
-       
-       engineUpdate();
-       float wiperPotReading = wiperPotRead();
-       float intermediatePotReading = intermediatePotRead();
-       int wiperState = readWiperState(wiperPotReading);
-       int intermediateState = readIntermediateState(intermediatePotReading);
-        displayWrite(wiperState, intermediateState);
-        servoUpdate();
+    while (true) {
+        engineStart();
+        engineCheck();
+        
+        displayWrite(readWiperState(wiperPotRead()), readIntermediateState(intermediatePotRead()));
+        servoSpeedAndDelay(readWiperState(wiperPotRead()), readIntermediateState(intermediatePotRead()));
         delay(SYSTEM_TIME_INCREMENT_MS);
     }
 }
