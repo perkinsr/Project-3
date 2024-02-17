@@ -4,10 +4,6 @@
 #include "arm_book_lib.h"
 #include "car.h"
 
-//=====[Defines]===============================================================
-
-//=====[Declaration of public data types]======================================
-
 //=====[Declaration and initialization of public global objects]===============
 
 DigitalIn ignitionButton(BUTTON1);
@@ -16,13 +12,9 @@ DigitalIn driverSeatButton(D10);
 DigitalOut engineLed(LED2);
 
 
-//=====[Declaration and initialization of public global variables]=============
-
-
-//=====[Declarations (prototypes) of public functions]=========================
-
 //=====[Implementations of public functions]===================================
 
+//initializes all of the buttons and LEDs
 void carInit()
 {
   ignitionButton.mode(PullDown);
@@ -30,8 +22,10 @@ void carInit()
   engineLed = OFF;
 }
 
-
-void engineStart() { // Turns the engine on/off based on ignition button and driver sensor
+// checks to see if the ignition can be started
+void engineStart() { 
+    //if the driver is seated and the button is pressed, turn the blue LED on when the 
+    //ignition button is released
     if (driverSeatButton && ignitionButton){
         int ignitionPressed = 1;
         while (ignitionPressed == 1){
@@ -43,8 +37,14 @@ void engineStart() { // Turns the engine on/off based on ignition button and dri
     }
 }
 
+//check to see if the ignitionButton to turn off the engine
 void engineCheck(){
     if (ignitionButton && engineLed == ON){
         engineLed = OFF;
     }
+}
+
+//check the state of the engineLed to see if the engine is on or not
+bool getLedState(){
+    return engineLed;
 }

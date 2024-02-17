@@ -4,6 +4,8 @@
 #define _POTENTIOMETERS_H_
 
 //=====[Declaration of public defines]=========================================
+
+//macros for timeDelay potentiometer
 #define DELAY_SHORT  0.7
 #define DELAY_MEDIUM 0.4
 
@@ -18,11 +20,10 @@
 #define INTER_STATE_MEDIUM    2
 #define INTER_STATE_LONG      3
 
-
+//macros for wiperModeSelector potentiometer
 #define WIPER_HI  0.75
 #define WIPER_LOW 0.55
 #define WIPER_INT 0.3
-//=====[Declaration of public data types]======================================
 
 //=====[Declarations (prototypes) of public functions]=========================
 
@@ -31,6 +32,7 @@ int readIntermediateState(float intermediateState);
 
 float wiperPotRead();
 float intermediatePotRead();
+
 //=====[#include guards - end]=================================================
 
 #endif // _MODULE_TEMPLATE_H_

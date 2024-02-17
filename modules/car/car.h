@@ -3,12 +3,6 @@
 #ifndef _CAR_H_
 #define _CAR_H_
 
-//=====[Declaration of public defines]=========================================
-
-
-//=====[Declaration of public data types]======================================
-
-
 //=====[Declarations (prototypes) of public functions]=========================
 
 void carInit();
@@ -16,6 +10,8 @@ void carInit();
 void engineCheck();
 
 void engineStart();
+
+bool getLedState();
 
 //=====[#include guards - end]=================================================
 

@@ -4,20 +4,10 @@
 #include "potentiometers.h"
 #include "display.h"
 
-//=====[Declaration of private defines]========================================
-
-//=====[Declaration of private data types]=====================================
-
 //=====[Declaration and initialization of public global objects]===============
+
 AnalogIn wiperModeSelection(A2);
 AnalogIn timeDelay(A3);
-//=====[Declaration of external public global variables]=======================
-
-//=====[Declaration and initialization of public global variables]=============
-
-//=====[Declaration and initialization of private global variables]============
-
-//=====[Declarations (prototypes) of private functions]========================
 
 //=====[Implementations of public functions]===================================
 
@@ -49,13 +39,14 @@ int readIntermediateState( float intermediateMode) {
     }
 }
 
-
-
 //=====[Implementations of private functions]==================================
+
+//returns the value of the wiperModeSelection potentiometer
 float wiperPotRead(){
     return wiperModeSelection.read();
 }
 
+//returns the value of the timeDelay potentiometer
 float intermediatePotRead(){
     return timeDelay.read();
 }
