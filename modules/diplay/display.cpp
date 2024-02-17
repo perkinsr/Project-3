@@ -6,6 +6,8 @@
 
 //=====[Declaration of private defines]========================================
 
+//all private defines have to deal with the initialization and writing functions
+
 #define DISPLAY_IR_CLEAR_DISPLAY   0b00000001
 #define DISPLAY_IR_ENTRY_MODE_SET  0b00000100
 #define DISPLAY_IR_DISPLAY_CONTROL 0b00001000
@@ -54,12 +56,6 @@
 #define DISPLAY_PIN_D6 13 
 #define DISPLAY_PIN_D7 14 
 
-#define DISPLAY_REFRESH_TIME_MS 1000
-
-#define SYSTEM_TIME_INCREMENT_MS   10
-
-//=====[Declaration of private data types]=====================================
-
 //=====[Declaration and initialization of public global objects]===============
 
 DigitalOut displayD0( D0 );
@@ -73,12 +69,6 @@ DigitalOut displayD7( D7 );
 DigitalOut displayRs( D8 );
 DigitalOut displayEn( D9 );
 
-//=====[Declaration of external public global variables]=======================
-
-//=====[Declaration and initialization of public global variables]=============
-
-//=====[Declaration and initialization of private global variables]============
-
 //=====[Declarations (prototypes) of private functions]========================
 
 static void displayPinWrite( uint8_t pinName, int value );
@@ -87,6 +77,8 @@ static void displayCodeWrite( bool type, uint8_t dataBus );
 
 //=====[Implementations of public functions]===================================
 
+//takes in the wiper state and interval value, if indicated, and displays the correcponding state
+//on the display
 void displayWrite (int placement, int interval) {
 
     if (placement == WIPER_STATE_OFF){
@@ -120,6 +112,7 @@ void displayWrite (int placement, int interval) {
     }
 }
 
+//initializes the display
 void displayInit()
 {
     delay( 50 );
@@ -171,6 +164,7 @@ void displayInit()
     delay( 1 );  
 }
 
+//takes in the x and y values as parameters and sets up the display to write at that specific position
 void displayCharPositionWrite( uint8_t charPositionX, uint8_t charPositionY )
 {    
     switch( charPositionY ) {
@@ -208,6 +202,7 @@ void displayCharPositionWrite( uint8_t charPositionX, uint8_t charPositionY )
     }
 }
 
+//while the string still has variables to write, 
 void displayStringWrite( const char * str )
 {
     while (*str) {
@@ -215,6 +210,7 @@ void displayStringWrite( const char * str )
     }
 }
 
+//initializes the display by initializing the display first, then writing the two mode selections
 void userInterfaceDisplayInit()
 {
     displayInit();
@@ -229,6 +225,7 @@ void userInterfaceDisplayInit()
 
 //=====[Implementations of private functions]==================================
 
+//sets up the coding portion of the initialize function
 static void displayCodeWrite( bool type, uint8_t dataBus )
 {
     if ( type == DISPLAY_RS_INSTRUCTION )
@@ -239,6 +236,7 @@ static void displayCodeWrite( bool type, uint8_t dataBus )
     displayDataBusWrite( dataBus );
 }
 
+//sets up the display pins
 static void displayPinWrite( uint8_t pinName, int value )
 {
     switch( pinName ) {
@@ -257,6 +255,7 @@ static void displayPinWrite( uint8_t pinName, int value )
     }
 }
 
+//sets up the display buses
 static void displayDataBusWrite( uint8_t dataBus )
 {
     displayPinWrite( DISPLAY_PIN_EN, OFF );

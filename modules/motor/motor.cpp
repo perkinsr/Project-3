@@ -1,36 +1,48 @@
-// Includes
+//=====[Libraries]=============================================================
 #include "mbed.h"
 #include "arm_book_lib.h"
 #include "motor.h"
 #include "potentiometers.h"
+#include "car.h"
 
-// Defines
-#define SET_TIME_INTERVAL 40
+//=====[Declaration of private defines]========================================
+
+//position where the motor is at 67 degrees
 #define TARGET_POSITION 0.067
 
+//defines values for forward and backward motion
 #define FORWARD true
 #define BACKWARD false
 
-#define MOTOR_HIGH 0.01
-#define MOTOR_LOW 0.003
+//values for motor speed increments
+#define MOTOR_HIGH 0.003
+#define MOTOR_LOW 0.001
 
+
+//time delays in milliseconds, divided by 2 periods (40ms)
 #define TIME_DELAY_SHORT 75
 #define TIME_DELAY_MEDIUM 150
 #define TIME_DELAY_LONG 200
 
-// Objects
+//=====[Declaration and initialization of public global objects]===============
 PwmOut servo(PF_9);
 
-// Function prototypes
+//=====[Declarations (prototypes) of private functions]========================
 void servoUpdate(float interval, int timeDelay);
 void noTimerServo (float interval);
-// Initialize the servo
+
+//=====[Implementations of public functions]===================================
+
+//initializes the servo motor
 void servoInit() {
     servo.period(PERIOD); // 20ms period
     servo.write(DUTY_MIN);
     delay(1000);
 }
 
+
+//uses inputs with the wiper states and intermediate delay states and uses them to run the respective
+//servo functions with the respective speeds and time delays
 void servoSpeedAndDelay(int wiperState, int intermediateState){
     if (wiperState == WIPER_STATE_INTER){
         if (intermediateState == INTER_STATE_SHORT){
@@ -47,9 +59,19 @@ void servoSpeedAndDelay(int wiperState, int intermediateState){
     }
 }
 
+//=====[Implementations of private functions]==================================
+
+//takes the specific speed and time delay in through the parameters and increments the motor by the given
+//ammount in interval every 2 periods (40 milliseconds)
 void servoUpdate(float interval, int intermediateTimeDelay){
+
+    //accounts for the motor accumulated timne
     static int accumulatedTime = 0;
+
+    //time delay accumulated time
     static int accumulatedTimeDelay = 0;
+
+    //start position at duty min
     static float position = DUTY_MIN;
     static bool direction = FORWARD;
     static bool cycleComplete = false;
@@ -74,7 +96,9 @@ void servoUpdate(float interval, int intermediateTimeDelay){
                 servo.write(position);
                 delay(40);
             }
+            engineCheck();
         } 
+
         if (cycleComplete == true && accumulatedTimeDelay != intermediateTimeDelay){
             accumulatedTimeDelay++;
         } else if (accumulatedTimeDelay == intermediateTimeDelay){
@@ -116,6 +140,7 @@ void noTimerServo (float interval){
                 servo.write(position);
                 delay(40);
             }
+            engineCheck();
         }
         accumulatedTime = 0;
     } else {
