@@ -88,6 +88,7 @@ static void displayCodeWrite( bool type, uint8_t dataBus );
 //=====[Implementations of public functions]===================================
 
 void displayWrite (int placement, int interval) {
+
     if (placement == WIPER_STATE_OFF){
         displayCharPositionWrite ( 12,0 );
         displayStringWrite("OFF");
@@ -98,22 +99,22 @@ void displayWrite (int placement, int interval) {
         displayStringWrite("INT");
         if (interval == INTER_STATE_LONG){
             displayCharPositionWrite (12,1 );
-            displayStringWrite("LONG");
+            displayStringWrite("LON");
         } else if (interval == INTER_STATE_MEDIUM){
             displayCharPositionWrite (12,1 );
-            displayStringWrite("MEDIUM");
+            displayStringWrite("MED");
         } else if (interval == INTER_STATE_SHORT){
             displayCharPositionWrite (12,1 );
-            displayStringWrite("SHORT");
+            displayStringWrite("SHO");
         }
     } else if (placement == WIPER_STATE_LOW){
-        displayCharPositionWrite ( 17,0 );
+        displayCharPositionWrite ( 12,0 );
         displayStringWrite("LOW");
         displayCharPositionWrite(12,1);
         displayStringWrite("N/A");
     } else if (placement == WIPER_STATE_HI){
-        displayCharPositionWrite ( 17,0 );
-        displayStringWrite("HI");
+        displayCharPositionWrite ( 12,0 );
+        displayStringWrite("HIG");
         displayCharPositionWrite(12,1);
         displayStringWrite("N/A");
     }

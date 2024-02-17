@@ -23,55 +23,35 @@ AnalogIn timeDelay(A3);
 
 // Function to read the state of the wiper
 int readWiperState(float wiperRead) {
+
     if (wiperRead < WIPER_INT) {
         return WIPER_STATE_OFF;
     } else if (wiperRead > WIPER_INT && wiperRead < WIPER_LOW) {
         return WIPER_STATE_INTER;
     } else if (wiperRead > WIPER_LOW && wiperRead < WIPER_HI) {
         return WIPER_STATE_LOW;
-    } else { // wiperRead >= WIPER_HI
+    } else { 
         return WIPER_STATE_HI;
     }
 }
 
 // Function to read the state of the intermediate mode
-int readIntermediateState(float intermediateMode) {
-  if (intermediateMode < DELAY_MEDIUM) {
+int readIntermediateState( float intermediateMode) {
+
+    if (intermediateMode < DELAY_MEDIUM) {
     return INTER_STATE_LONG;
-  } else if (intermediateMode < DELAY_SHORT && intermediateMode > DELAY_MEDIUM) {
+    } else if (intermediateMode < DELAY_SHORT && intermediateMode > DELAY_MEDIUM) {
     return INTER_STATE_MEDIUM;
-  } else if (intermediateMode > DELAY_SHORT) {
+    } else if (intermediateMode > DELAY_SHORT) {
     return INTER_STATE_SHORT;
-  } else {
+    } else {
     return INTER_STATE_SHORT;
-  }
-}
-
-
-/*
-void potentiometerCheck(){
-    wiperRead = wiperPotRead();
-    timeDelayRead = intermediatePotRead(); 
-    //change all of this to reporesent the read values for the potentiometers
-    if (wiperRead < WIPER_INT){
-        displayWrite(1,0);
-    } else if (wiperRead > WIPER_INT && wiperRead < WIPER_LOW){
-        if (timeDelayRead > DELAY_MEDIUM){
-            displayWrite(2,1);
-        } else if (timeDelayRead > DELAY_MEDIUM && timeDelayRead < DELAY_SHORT){
-            displayWrite(2,2);
-        } else if (timeDelayRead > DELAY_SHORT){
-            displayWrite(2,3);
-        }
-    } else if (wiperRead > WIPER_LOW && wiperRead < WIPER_HI){
-        displayWrite(3,0);
-    } else if (wiperRead > WIPER_HI){
-        displayWrite(4,0);
     }
 }
-*/
 
 
+
+//=====[Implementations of private functions]==================================
 float wiperPotRead(){
     return wiperModeSelection.read();
 }
@@ -79,4 +59,3 @@ float wiperPotRead(){
 float intermediatePotRead(){
     return timeDelay.read();
 }
-//=====[Implementations of private functions]==================================

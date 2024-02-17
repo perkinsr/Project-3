@@ -1,8 +1,5 @@
 //=====[#include guards - begin]===============================================
 
-#include "mbed.h"
-#include "arm_book_lib.h"
-
 #ifndef _CAR_H_
 #define _CAR_H_
 
@@ -16,9 +13,9 @@
 
 void carInit();
 
-void engineUpdate();
-bool engineButtonUpdate();
-bool driverSitting();
+void engineCheck();
+
+void engineStart();
 
 //=====[#include guards - end]=================================================
 
