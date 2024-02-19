@@ -9,7 +9,10 @@ This code creates a comprehensie windshield wiper subsystem. The system includes
 | Start the engine (i.e., light the blue LED) while the driver’s seat is occupied and when the ignition button is pushed and then released. | Pass |
 | Keep the engine running even if the driver should exit the vehicle. | Pass |
 | When the engine is running, stop the engine when the ignition button is pushed (i.e., before the button is released). | Pass |
+
 | **Wiper Subsystem** |  |
+|---|---|
+| Specification | Test Result |
 | Wiper mode dial should correct set wiper mode | Pass |
 | Time delay dial should correctly set time delay | Pass |
 | Display should show the values of both dials | Pass |
