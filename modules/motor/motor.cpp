@@ -19,10 +19,10 @@
 #define MOTOR_LOW 0.001
 
 
-//time delays in milliseconds, divided by 2 periods (40ms)
-#define TIME_DELAY_SHORT 75
-#define TIME_DELAY_MEDIUM 150
-#define TIME_DELAY_LONG 200
+//guess and checked values for 3, 6, and 8 second delays respectively
+#define TIME_DELAY_SHORT 20
+#define TIME_DELAY_MEDIUM 40
+#define TIME_DELAY_LONG 55
 
 //=====[Declaration and initialization of public global objects]===============
 PwmOut servo(PF_9);
@@ -77,7 +77,7 @@ void servoUpdate(float interval, int intermediateTimeDelay){
     static bool cycleComplete = false;
 
     //if it has been 40 milliseconds, run the following while loop
-    if (accumulatedTime >= 4){
+    if (accumulatedTime >= 40){
         
         //this while loop ensures that the speed or time delay can't be changed in the middle of a cycle
         while (cycleComplete == false){
@@ -144,7 +144,7 @@ void noTimerServo (float interval){
     static bool direction = FORWARD;
     static bool cycleComplete = false;
 
-    if (accumulatedTime >= 4){
+    if (accumulatedTime >= 40){
 
         while (cycleComplete == false){
             if (position >= TARGET_POSITION){
